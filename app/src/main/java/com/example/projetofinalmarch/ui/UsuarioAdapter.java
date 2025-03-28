@@ -37,7 +37,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioViewHolder> {
         Usuario usuario = usuarios.get(position);
 
         /*
-        usa o m bind do usuario view holder para atualizar os dados
+        usa o method (escrito assim pq me-t-o-d-o da erro) bind do usuario view holder para atualizar os dados
          */
         holder.bind(usuario);
         holder.bind(usuario);
