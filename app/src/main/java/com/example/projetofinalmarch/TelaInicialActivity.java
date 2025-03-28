@@ -39,8 +39,9 @@ public class TelaInicialActivity extends AppCompatActivity {
                 }
             }, DELAY);
         });
-
+        //SetOnClickListener para ir à tela de listagem.
         binding.btnListagem.setOnClickListener(v ->{
+            //Intenção criada para ir à tela desejada.
             Intent INTENT = new Intent(TelaInicialActivity.this, ListagemActivity.class);
 
 
@@ -55,7 +56,7 @@ public class TelaInicialActivity extends AppCompatActivity {
                 }
             }, DELAY);
         });
-
+        //Fecha o programa.
         binding.btnSair.setOnClickListener(v ->{
 
             finish();

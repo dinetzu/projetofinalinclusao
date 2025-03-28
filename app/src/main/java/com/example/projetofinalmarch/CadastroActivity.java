@@ -36,11 +36,11 @@ public class CadastroActivity extends AppCompatActivity {
         binding.btnCadastrar.setOnClickListener(v -> {
 
             try {
-                //worker thread criada para não sobrecarregar a ui na consulta/criação do banco de dados
+                //"Worker thread" criada para não sobrecarregar a ui na consulta/criação do banco de dados
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        //criação do usuário e seus valores no BD
+                        //Criação do usuário e seus valores no BD
                         Usuario USUARIO = new Usuario();
                         USUARIO.NOME = binding.editNOME.getText().toString().trim();
                         USUARIO.EMAIL = binding.editEMAIL.getText().toString().trim();
@@ -48,19 +48,19 @@ public class CadastroActivity extends AppCompatActivity {
 
 
 
-                        //instanciando o BD
+                        //Instanciando o BD
                         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "usuarios_comuns").build();
                         UsuarioDAO dao_usuario = db.usuarioDAO();
                         dao_usuario.inserirInfo(USUARIO);
 
-                        //prova de que o BD está funcional
+                        //Prova de que o BD está funcional
                         List<Usuario> usuarios = dao_usuario.listarUsuarios();
                         for (Usuario usuario : usuarios) {
                             System.out.println("Usuário: " + usuario.NOME);
                         }
 
 
-                        //thread para atualizar a ui (principal)
+                        //Thread para atualizar a ui (principal)
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -84,7 +84,7 @@ public class CadastroActivity extends AppCompatActivity {
         });
 
         binding.btnVoltarInicial.setOnClickListener(v ->{
-            //intent para voltar
+            //Intent para voltar
             Intent INTENT = new Intent(CadastroActivity.this, TelaInicialActivity.class);
             startActivity(INTENT);
             finishAffinity();

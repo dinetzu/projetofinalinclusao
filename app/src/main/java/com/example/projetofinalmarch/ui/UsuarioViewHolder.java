@@ -16,7 +16,7 @@ public class UsuarioViewHolder extends RecyclerView.ViewHolder {
         this.binding = binding;
     }
 
-    //atualiza componentes da interface com os dados do usuario
+    //Atualiza componentes da interface com os dados do usuario
     public void bind(Usuario usuario) {
         binding.textoNOME.setText(usuario.NOME);
         binding.textoEMAIL.setText(usuario.EMAIL);

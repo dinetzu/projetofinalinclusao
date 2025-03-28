@@ -126,7 +126,7 @@
         android:gravity="center"
         android:text="Cadastrar"
         android:textColor="#FFFFFF"
-        android:background="@color/black"/>
+        android:backgroundTint="#0F064C"/>
 
     <Button
         android:id="@+id/btnVoltarInicial"
@@ -136,6 +136,6 @@
         android:gravity="center"
         android:text="Voltar ao Menu Principal"
         android:textColor="#FFFFFF"
-        android:background="@color/black"
-        android:layout_marginTop="30dp"/>
+        android:backgroundTint="#0F064C"
+        android:layout_marginTop="15dp"/>
 </LinearLayout>

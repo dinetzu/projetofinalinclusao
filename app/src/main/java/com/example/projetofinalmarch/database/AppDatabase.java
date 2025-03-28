@@ -11,16 +11,16 @@ import com.example.projetofinalmarch.models.Usuario;
 //Define a classe AppDatabase para armazenar o banco de dados.
 @Database(entities = {Usuario.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
-    // variável estática para armazenar a única instância do banco de dados do usuario
+    // Variável estática para armazenar a única instância do banco de dados do usuario
     private static volatile AppDatabase INSTANCE;
 
     /*
-    metodo abstrato para a interface usuario dao
+    Metodo abstrato para a interface usuario dao
      */
     public abstract UsuarioDAO usuarioDAO();
 
     /*
-    metodo para ter apenas uma instancia do bd, sem gerar conflitos e resets
+    Metodo para ter apenas uma instancia do bd, sem gerar conflitos e resets
      */
     public static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {
@@ -32,7 +32,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 }
             }
         }
-        //retorna a instancia se for chamada em outra parte do projeto
+        //Retorna a instancia se for chamada em outra parte do projeto
         return INSTANCE;
     }
 }

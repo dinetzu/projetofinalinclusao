@@ -16,7 +16,7 @@ import com.example.projetofinalmarch.ui.UsuarioAdapter;
 import java.util.List;
 
 
-// não consigo passar os dados do BD para cá
+// não conseguimos passar os dados do BD para cá, apesar de estar funcional no CadastroActivity
 public class ListagemActivity extends AppCompatActivity {
 
     private ActivityListagemBinding binding;
@@ -39,7 +39,7 @@ public class ListagemActivity extends AppCompatActivity {
             public void run(){
                 AppDatabase db = AppDatabase.getInstance(getApplicationContext());
 
-                //cria uma variavel para acessar o usuario DAO
+                //Cria uma variavel para acessar o usuario DAO
                 UsuarioDAO usuarioDao = db.usuarioDAO();
                 List<Usuario> listaUsuario = usuarioDao.listarUsuarios();
 
