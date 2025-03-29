@@ -6,8 +6,6 @@ import com.example.projetofinalmarch.models.Usuario;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Looper;
-import android.os.Handler;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -32,7 +30,7 @@ public class CadastroActivity extends AppCompatActivity {
 
 
 
-        // Define o clique do botão usando View Binding
+        // Isto define o clique do botão usando View Binding
         binding.btnCadastrar.setOnClickListener(v -> {
 
             try {
