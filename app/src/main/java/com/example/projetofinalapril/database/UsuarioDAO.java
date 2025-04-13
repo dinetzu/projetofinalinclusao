@@ -1,11 +1,11 @@
-package com.example.projetofinalmarch.database;
+package com.example.projetofinalapril.database;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.example.projetofinalmarch.models.Usuario;
+import com.example.projetofinalapril.models.Usuario;
 
 import java.util.List;
 

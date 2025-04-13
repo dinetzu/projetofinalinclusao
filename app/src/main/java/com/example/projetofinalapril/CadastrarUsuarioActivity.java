@@ -12,20 +12,20 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-import com.example.projetofinalapril.databinding.ActivityCadastroBinding;
+import com.example.projetofinalapril.databinding.ActivityCadastrarUsuarioBinding;
 
 import java.util.List;
 
 
-public class CadastroActivity extends AppCompatActivity {
-    private ActivityCadastroBinding binding;
+public class CadastrarUsuarioActivity extends AppCompatActivity {
+    private ActivityCadastrarUsuarioBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Inicializa o View Binding
-        binding = ActivityCadastroBinding.inflate(getLayoutInflater());
+        binding = ActivityCadastrarUsuarioBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
 
@@ -39,30 +39,27 @@ public class CadastroActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         //Criação do usuário e seus valores no BD
-                        Usuario USUARIO = new Usuario();
-                        USUARIO.NOME = binding.editNOME.getText().toString().trim();
-                        USUARIO.EMAIL = binding.editEMAIL.getText().toString().trim();
-                        USUARIO.SENHA = binding.editSENHA.getText().toString().trim();
+                        Usuario usuario = new Usuario();
+                        usuario.nome = binding.editNome.getText().toString().trim();
+                        usuario.email = binding.editEmail.getText().toString().trim();
+                        usuario.senha = binding.editSenha.getText().toString().trim();
 
 
 
                         //Instanciando o BD
                         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "usuarios_comuns").build();
                         UsuarioDAO dao_usuario = db.usuarioDAO();
-                        dao_usuario.inserirInfo(USUARIO);
+                        dao_usuario.inserirInfo(usuario);
 
                         //Prova de que o BD está funcional
                         List<Usuario> usuarios = dao_usuario.listarUsuarios();
-                        for (Usuario usuario : usuarios) {
-                            System.out.println("Usuário: " + usuario.NOME);
-                        }
 
 
                         //Thread para atualizar a ui (principal)
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(CadastroActivity.this);
+                                AlertDialog.Builder builder = new AlertDialog.Builder(CadastrarUsuarioActivity.this);
                                 builder.setMessage("Salvo com sucesso!");
                                 builder.create().show();
                             }
@@ -83,8 +80,8 @@ public class CadastroActivity extends AppCompatActivity {
 
         binding.btnVoltarInicial.setOnClickListener(v ->{
             //Intent para voltar
-            Intent INTENT = new Intent(CadastroActivity.this, TelaInicialActivity.class);
-            startActivity(INTENT);
+            Intent intent = new Intent(CadastrarUsuarioActivity.this, TelaInicialActivity.class);
+            startActivity(intent);
             finishAffinity();
         });
 
@@ -115,4 +112,3 @@ public class CadastroActivity extends AppCompatActivity {
 
     }
 }
-

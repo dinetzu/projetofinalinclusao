@@ -22,10 +22,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ListagemActivity"
+            android:name=".ListarUsuarioActivity"
             android:exported="true" />
         <activity
-            android:name=".CadastroActivity"
+            android:name=".CadastrarUsuarioActivity"
             android:exported="true" />
 
         <meta-data

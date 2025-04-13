@@ -1,16 +1,18 @@
-package com.example.projetofinalmarch.ui;
+package com.example.projetofinalapril.ui;
 
 
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.projetofinalmarch.databinding.UsuarioLayoutBinding;
-import com.example.projetofinalmarch.models.Usuario;
+import com.example.projetofinalapril.databinding.UsuarioLayoutBinding;
+import com.example.projetofinalapril.models.Usuario;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioViewHolder> {
@@ -18,7 +20,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioViewHolder> {
     private List<Usuario> usuarios;
 
     public UsuarioAdapter(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
+        this.usuarios = usuarios != null ? usuarios : new ArrayList<>();// Evita null
     }
 
     @NonNull
@@ -35,12 +37,9 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull UsuarioViewHolder holder, int position) {
         Usuario usuario = usuarios.get(position);
-
-        /*
-        usa o method (escrito assim pq me-t-o-d-o da erro) bind do usuario view holder para atualizar os dados
-         */
-        holder.bind(usuario);
-        holder.bind(usuario);
+        Log.d("UsuarioAdapter", "Usuário " + position + ": " + usuario.getNome() + " | " + usuario.getEmail());
+        holder.binding.textoNome.setText(usuario.getNome());
+        holder.binding.textoEmail.setText(usuario.getEmail());
     }
 
     public int getItemCount() {

@@ -1,11 +1,11 @@
-package com.example.projetofinalmarch.ui;
+package com.example.projetofinalapril.ui;
 
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.projetofinalmarch.databinding.UsuarioLayoutBinding;
-import com.example.projetofinalmarch.models.Usuario;
+import com.example.projetofinalapril.databinding.UsuarioLayoutBinding;
+import com.example.projetofinalapril.models.Usuario;
 
 public class UsuarioViewHolder extends RecyclerView.ViewHolder {
 
@@ -15,11 +15,4 @@ public class UsuarioViewHolder extends RecyclerView.ViewHolder {
         super(binding.getRoot());
         this.binding = binding;
     }
-
-    //Atualiza componentes da interface com os dados do usuario
-    public void bind(Usuario usuario) {
-        binding.textoNOME.setText(usuario.NOME);
-        binding.textoEMAIL.setText(usuario.EMAIL);
-    }
 }
-

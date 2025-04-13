@@ -1,18 +1,13 @@
-package com.example.projetofinalmarch;
+package com.example.projetofinalapril;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.projetofinalmarch.databinding.ActivityCadastroBinding;
-import com.example.projetofinalmarch.databinding.ActivityTelaInicialBinding;
+import com.example.projetofinalapril.databinding.ActivityTelaInicialBinding;
 
 public class TelaInicialActivity extends AppCompatActivity {
 
@@ -25,7 +20,7 @@ public class TelaInicialActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.btnCadastro.setOnClickListener(v ->{
-            Intent INTENT = new Intent(TelaInicialActivity.this, CadastroActivity.class);
+            Intent INTENT = new Intent(TelaInicialActivity.this, CadastrarUsuarioActivity.class);
 
 
             //Handler para criar um delay
@@ -42,7 +37,7 @@ public class TelaInicialActivity extends AppCompatActivity {
         //SetOnClickListener para ir à tela de listagem.
         binding.btnListagem.setOnClickListener(v ->{
             //Intenção criada para ir à tela desejada.
-            Intent INTENT = new Intent(TelaInicialActivity.this, ListagemActivity.class);
+            Intent INTENT = new Intent(TelaInicialActivity.this, ListarUsuarioActivity.class);
 
 
             //Handler para criar um delay

@@ -1,75 +1,75 @@
-package com.example.projetofinalmarch.models;
+package com.example.projetofinalapril.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-    //Criação da entidade para gerar tabela no Room
-    @Entity
-    public class Usuario {
-        @PrimaryKey(autoGenerate = true)
-        public long CODIGO;
-        //Escolhemos long porque podem haver vários registros.
+//Criação da entidade para gerar tabela no Room
+@Entity
+public class Usuario {
+    @PrimaryKey(autoGenerate = true)
+    public long codigoUsuario;
+    //Escolhemos long porque podem haver vários registros.
 
-        @ColumnInfo(name = "NOME")
-        public String NOME;
+    @ColumnInfo(name = "nome")
+    public String nome;
 
-        @ColumnInfo(name = "EMAIL")
-        public String EMAIL;
-        @ColumnInfo(name = "Senha")
-        public String SENHA;
+    @ColumnInfo(name = "email")
+    public String email;
+    @ColumnInfo(name = "senha")
+    public String senha;
 
-        private static final String PASSWORD_REGEX =
-                "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$";
+    private static final String PASSWORD_REGEX =
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$";
 
-        // Permite a impressão formatada dos dados usuário durante a main
-        @Override
-        public String toString() {
-            return "Usuario{" +
-                    "CODIGO=" + CODIGO +
-                    ", NOME='" + NOME + '\'' +
-                    ", EMAIL='" + EMAIL + '\'' +
-                    ", SENHA='" + SENHA + '\'' +
-                    '}';
-        }
-
-
-        public long getCODIGO() {
-            return CODIGO;
-        }
-
-        public void setCODIGO(long CODIGO) {
-            this.CODIGO = CODIGO;
-        }
-
-        public String getNOME() {
-            return NOME;
-        }
-
-        public void setNOME(String NOME) {
-            this.NOME = NOME;
-        }
-
-        public String getEMAIL() {
-            return EMAIL;
-        }
-
-        public void setEMAIL(String EMAIL) {
-            this.EMAIL = EMAIL;
-        }
-
-        public String getSENHA() {
-            return SENHA;
-        }
-
-        public void setSENHA(String SENHA) {
-            // Verifica os dados da senha
-            if (SENHA.matches(PASSWORD_REGEX)) {
-                this.SENHA = SENHA; // Senha válida
-            } else {//Se a senha for inválida, aparece mensagem de erro
-                throw new IllegalArgumentException("Senha inválida!");
-            }
-        }
-
-
-
+    // Permite a impressão formatada dos dados usuário durante a main
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "Codigo=" + codigoUsuario +
+                ", Nome='" + nome + '\'' +
+                ", Email='" + email + '\'' +
+                ", Senha='" + senha + '\'' +
+                '}';
     }
+
+
+    public long getCodigoUsuario() {
+        return codigoUsuario;
+    }
+
+    public void setCodigoUsuario(long codigoUsuario) {
+        this.codigoUsuario = codigoUsuario;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        // Verifica os dados da senha
+        if (senha.matches(PASSWORD_REGEX)) {
+            this.senha = senha; // Senha válida
+        } else {//Se a senha for inválida, aparece mensagem de erro
+            throw new IllegalArgumentException("Senha inválida!");
+        }
+    }
+
+
+
+}
