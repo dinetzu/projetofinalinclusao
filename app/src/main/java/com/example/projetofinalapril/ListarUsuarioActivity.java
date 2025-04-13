@@ -1,4 +1,4 @@
-package com.example.projetofinalmarch;
+package com.example.projetofinalapril;
 
 import android.os.Bundle;
 
@@ -7,11 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.room.Room;
 
-import com.example.projetofinalmarch.database.AppDatabase;
-import com.example.projetofinalmarch.database.UsuarioDAO;
-import com.example.projetofinalmarch.databinding.ActivityListagemBinding;
-import com.example.projetofinalmarch.models.Usuario;
-import com.example.projetofinalmarch.ui.UsuarioAdapter;
+import com.example.projetofinalapril.database.AppDatabase;
+import com.example.projetofinalapril.database.UsuarioDAO;
+import com.example.projetofinalapril.databinding.ActivityListagemBinding;
+import com.example.projetofinalapril.models.Usuario;
+import com.example.projetofinalapril.ui.UsuarioAdapter;
 
 import java.util.List;
 

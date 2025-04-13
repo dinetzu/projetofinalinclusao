@@ -1,8 +1,8 @@
-package com.example.projetofinalmarch;
+package com.example.projetofinalapril;
 
-import com.example.projetofinalmarch.database.AppDatabase;
-import com.example.projetofinalmarch.database.UsuarioDAO;
-import com.example.projetofinalmarch.models.Usuario;
+import com.example.projetofinalapril.database.AppDatabase;
+import com.example.projetofinalapril.database.UsuarioDAO;
+import com.example.projetofinalapril.models.Usuario;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-import com.example.projetofinalmarch.databinding.ActivityCadastroBinding;
+import com.example.projetofinalapril.databinding.ActivityCadastroBinding;
 
 import java.util.List;
 
