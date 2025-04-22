@@ -33,47 +33,64 @@ public class CadastrarUsuarioActivity extends AppCompatActivity {
         // Isto define o clique do botão usando View Binding
         binding.btnCadastrar.setOnClickListener(v -> {
 
-            try {
-                //"Worker thread" criada para não sobrecarregar a ui na consulta/criação do banco de dados
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Criação do usuário e seus valores no BD
-                        Usuario usuario = new Usuario();
-                        usuario.nome = binding.editNome.getText().toString().trim();
-                        usuario.email = binding.editEmail.getText().toString().trim();
-                        usuario.senha = binding.editSenha.getText().toString().trim();
-
-
-
-                        //Instanciando o BD
-                        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "usuarios_comuns").build();
-                        UsuarioDAO dao_usuario = db.usuarioDAO();
-                        dao_usuario.inserirInfo(usuario);
-
-                        //Prova de que o BD está funcional
-                        List<Usuario> usuarios = dao_usuario.listarUsuarios();
-
-
-                        //Thread para atualizar a ui (principal)
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(CadastrarUsuarioActivity.this);
-                                builder.setMessage("Salvo com sucesso!");
-                                builder.create().show();
+            //"Worker thread" criada para não sobrecarregar a ui na consulta/criação do banco de dados
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    // Thread para a validação dos dados
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (binding.editNome.getText().toString().isEmpty() ||
+                                    binding.editEmail.getText().toString().isEmpty() ||
+                                    binding.editSenha.getText().toString().isEmpty()) {
+                                Toast.makeText(CadastrarUsuarioActivity.this, "Não aceitamos campos vazios!",
+                                        Toast.LENGTH_SHORT).show();
                             }
 
-                        });
+                            if (binding.editSenha.getText().toString().length() < 8) {
+                                Toast.makeText(CadastrarUsuarioActivity.this, "Senha deve ter no mínimo 8 caracteres",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
 
-                    }
-                }).start();
+                    });
+                    // Thread para a criação do Usuário
+                    new Thread(() -> {
+                        try {
+                            // Criando objeto usuário
+                            Usuario usuario = new Usuario(
+                                    binding.editNome.getText().toString().trim(),
+                                    binding.editEmail.getText().toString().trim(),
+                                    binding.editSenha.getText().toString().trim()
+                            );
 
-            }
+                            // Chamando a instância do banco AppDatabase
+                            AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+                            UsuarioDAO dao_usuario = db.usuarioDAO();
 
-            catch (Exception ex){
-                Toast.makeText(this, "Cadastro não realizado", Toast.LENGTH_SHORT).show();
-            }
+                            // Inserindo usuário
+                            dao_usuario.inserirInfo(usuario);
+
+                            // Mostra que deu certo
+                            runOnUiThread(() -> new AlertDialog.Builder(CadastrarUsuarioActivity.this)
+                                    .setMessage("Salvo com sucesso!")
+                                    .show());
+
+                        } catch (IllegalArgumentException e) {
+                            // Mostra o erro da senha que não obedece aos padrões do REGEX definido na classe usuário
+                            runOnUiThread(() -> Toast.makeText(CadastrarUsuarioActivity.this,
+                                    "Erro: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                        } catch (Exception e) {
+                            // Mostra erros relacionados ao salvamento de dados no BD do Room
+                            runOnUiThread(() -> Toast.makeText(CadastrarUsuarioActivity.this,
+                                    "Erro ao salvar: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                        }
+                    }).start();
+                }
+            }).start();
+
+
 
 
         });
@@ -84,29 +101,6 @@ public class CadastrarUsuarioActivity extends AppCompatActivity {
             startActivity(intent);
             finishAffinity();
         });
-
-        /*
-        Depois
-
-        binding.btnVoltarInicial.setOnClickListener(v -> {
-            //intent para voltar
-            //intent para iniciar a atividade de listagem
-            Intent INTENT = new Intent(CadastroActivity.this, TelaInicialActivity.class);
-
-
-            //Handler para criar um delay
-            Handler HANDLER = new Handler(Looper.getMainLooper());
-            long DELAY = 2000;
-
-            HANDLER.postDelayed(new Runnable(){
-                public void run(){
-                    startActivity(INTENT);
-                    finish();
-                }
-            }, DELAY);
-        });
-
-         */
 
 
 

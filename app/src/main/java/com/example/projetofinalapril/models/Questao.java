@@ -6,30 +6,16 @@ import androidx.room.PrimaryKey;
 public class Questao {
     @PrimaryKey(autoGenerate = true)
     private long codigoQuestao;
-    @ColumnInfo(name = "disciplina")
-    public String disciplina;
-
-    @ColumnInfo(name="conteudo")
-    public String conteudo;
-
-    @ColumnInfo(name="serie")
-    public String serie;
-
-    @ColumnInfo(name="tipoAdaptacao")
-    public String tipoAdaptacao;
-
-    @ColumnInfo(name="data")
-    public String data;
+    private String texto;
+    private String textoResposta;
+    private String nivelDificuldade;
 
 
     //construtor
-    public Questao(String disciplina, String conteudo, String serie,
-                   String tipoAdaptacao, String data) {
-        this.disciplina = disciplina;
-        this.conteudo = conteudo;
-        this.serie = serie;
-        this.tipoAdaptacao = tipoAdaptacao;
-        this.data = data;
+    public Questao(String texto, String textoResposta, String nivelDificuldade) {
+        this.texto = texto;
+        this.textoResposta = textoResposta;
+        this.nivelDificuldade = nivelDificuldade;
     }
 
     public long getCodigoQuestao() {
@@ -40,44 +26,27 @@ public class Questao {
         this.codigoQuestao = codigoQuestao;
     }
 
-    public String getDisciplina() {
-        return disciplina;
+    public String getTexto() {
+        return texto;
     }
 
-    public void setDisciplina(String disiciplina) {
-        this.disciplina = disiciplina;
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
 
-    public String getConteudo() {
-        return conteudo;
+    public String getTextoResposta() {
+        return textoResposta;
     }
 
-    public void setConteudo(String conteudo) {
-        this.conteudo = conteudo;
+    public void setTextoResposta(String textoResposta) {
+        this.textoResposta = textoResposta;
     }
 
-    public String getSerie() {
-        return serie;
+    public String getNivelDificuldade() {
+        return nivelDificuldade;
     }
 
-    public void setSerie(String serie) {
-        this.serie = serie;
+    public void setNivelDificuldade(String nivelDificuldade) {
+        this.nivelDificuldade = nivelDificuldade;
     }
-
-    public String getTipoAdaptacao() {
-        return tipoAdaptacao;
-    }
-
-    public void setTipoAdaptacao(String tipoAdaptacao) {
-        this.tipoAdaptacao = tipoAdaptacao;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-
 }

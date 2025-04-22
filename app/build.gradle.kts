@@ -38,7 +38,7 @@ dependencies {
 
     //implementação do room
 
-    val room_version = "2.6.1"
+    val room_version = "2.7.0"
 
     implementation(libs.androidx.room.runtime)
     //processador de código

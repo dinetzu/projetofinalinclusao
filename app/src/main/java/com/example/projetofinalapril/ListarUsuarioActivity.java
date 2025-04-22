@@ -47,18 +47,16 @@ public class ListarUsuarioActivity extends AppCompatActivity {
                     UsuarioDAO usuarioDao = db.usuarioDAO();
                     List<Usuario> listaUsuario = usuarioDao.listarUsuarios();
 
-                    try {
                         runOnUiThread(() -> {
+                            //verifica se há usuários no BD
                             if (listaUsuario == null || listaUsuario.isEmpty()) {
-                                Toast.makeText(ListarUsuarioActivity.this, "Socorro", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ListarUsuarioActivity.this, "Sem usuários", Toast.LENGTH_SHORT).show();
                             } else {
                                 itemAdapter = new UsuarioAdapter(listaUsuario);
                                 binding.recyclerViewUsuarios.setAdapter(itemAdapter);
                             }
                         });
-                    } catch (Exception e) {
-                        Log.e("ListarUsuario", "Erro ao carregar usuários: " + e.getMessage());
-                    }
+
                 }
             });
         });

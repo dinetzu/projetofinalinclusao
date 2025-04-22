@@ -21,27 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <ImageView
-            android:layout_width="134dp"
-            android:layout_height="85dp"
-            android:maxWidth="40dp"
-            android:minHeight="30dp"
-            android:src="@drawable/inclusaoiserj" />
-
-        <ImageView
-            android:layout_width="112dp"
-            android:layout_height="match_parent"
-            android:maxWidth="40dp"
-            android:minHeight="30dp"
-            android:src="@drawable/iserjlogo" />
-
-
-    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,54 +31,59 @@
         android:textColor="#454387"
         android:textSize="60px" />
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alumni_sans"
-            android:gravity="left"
             android:text="Digite seu nome:"
             android:textColor="#261FB3"
-            android:textSize="65px"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
+            android:textSize="65px" />
+        <!-- Para fazer a borda do editNome-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:hint="Fulano Silva"
-            android:textColorHint="#9797D8"
-            android:id="@+id/editNome"/>
+            android:layout_gravity="center_horizontal">
+
+            <EditText
+                android:id="@+id/editNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Fulano Silva"
+                android:textColorHint="#9797D8" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alumni_sans"
-            android:gravity="left"
             android:text="Digite seu email:"
             android:textColor="#261FB3"
             android:textSize="65px"
             />
-
-        <EditText
-            android:layout_width="match_parent"
+        <!-- Para fazer a borda do editNome-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:hint="fulano@gmail.com"
-            android:textColorHint="#9797D8"
-            android:id="@+id/editEmail"/>
+            android:layout_gravity="center_horizontal">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:hint="fulano@gmail.com"
+                android:textColorHint="#9797D8"
+                android:inputType="textEmailAddress"
+                android:id="@+id/editEmail"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alumni_sans"
-            android:gravity="left"
             android:text="Dígite sua senha:"
             android:textColor="#261FB3"
             android:textSize="65px"
@@ -107,14 +91,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:layout_width="match_parent"
+        <!-- Para fazer a borda do editSenha-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:hint="XXXXX"
-            android:textColorHint="#9797D8"
-            android:id="@+id/editSenha"/>
+            android:layout_gravity="center_horizontal">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:hint="XXXXX"
+                android:textColorHint="#9797D8"
+                android:inputType="textPassword"
+                android:id="@+id/editSenha"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
