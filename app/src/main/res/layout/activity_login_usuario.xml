@@ -1,26 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background_cadastrarusuario"
+    android:background="@drawable/gradient_background_loginusuario"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".CadastrarUsuarioActivity">
+    tools:context=".LoginUsuarioActivity">
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/abril_fatface"
-        android:text="Cadastro"
+        android:text="Login"
         android:textAlignment="center"
         android:textColor="#C5EEFF"
-        android:textSize="100px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="100px" />
 
 
     <TextView
@@ -29,33 +25,14 @@
         android:fontFamily="@font/cardo"
         android:text="CDGI ISERJ"
         android:textAlignment="center"
-        android:textColor="#66ADFB"
+        android:textColor="#66FBF4"
         android:textSize="60px" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <!-- Para fazer a borda do editNome-->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/edit_text_borda"
-            android:textColorHint="#FFFFFF"
-            app:boxStrokeWidth="0dp">
 
-            <EditText
-                android:id="@+id/editNome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:fontFamily="@font/commissioner_light"
-                android:hint="Nome" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <!-- Para fazer a borda do editEmail-->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="350dp"
             android:layout_height="wrap_content"
@@ -99,18 +76,17 @@
                 android:inputType="textPassword"
                 android:textColorHint="#9797D8" />
         </com.google.android.material.textfield.TextInputLayout>
-
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnCadastrar"
+        android:id="@+id/btnLogar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:backgroundTint="#4255BF"
+        android:backgroundTint="#42BFB9"
         android:fontFamily="@font/aoboshi_one"
         android:gravity="center"
-        android:text="Cadastrar"
+        android:text="Entrar"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -118,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:backgroundTint="#4255BF"
+        android:backgroundTint="#42BFB9"
         android:fontFamily="@font/aoboshi_one"
         android:gravity="center"
         android:text="Voltar ao Menu Principal"

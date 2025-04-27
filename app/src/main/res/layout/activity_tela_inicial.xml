@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".TelaInicialActivity"
     android:gravity="center"
+    android:background="@drawable/gradient_background_telainicial"
     android:orientation="vertical">
 
     <TextView
@@ -14,7 +15,7 @@
         android:text="Bem-vindo!"
         android:textSize="40dp"
         android:fontFamily="@font/abril_fatface"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textAlignment="center"
         android:layout_marginBottom="30dp"/>
 
@@ -24,6 +25,13 @@
         android:text="Cadastro"
         android:backgroundTint="#0F064C"
         android:id="@+id/btnCadastro"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Entrar"
+        android:backgroundTint="#0F064C"
+        android:id="@+id/btnLogin"/>
 
     <Button
         android:layout_width="wrap_content"

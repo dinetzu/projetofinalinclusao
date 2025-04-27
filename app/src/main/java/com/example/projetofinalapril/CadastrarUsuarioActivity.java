@@ -28,11 +28,8 @@ public class CadastrarUsuarioActivity extends AppCompatActivity {
         binding = ActivityCadastrarUsuarioBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
-
         // Isto define o clique do botão usando View Binding
         binding.btnCadastrar.setOnClickListener(v -> {
-
             //"Worker thread" criada para não sobrecarregar a ui na consulta/criação do banco de dados
             new Thread(new Runnable() {
                 @Override

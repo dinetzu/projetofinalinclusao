@@ -4,9 +4,8 @@ import static com.example.projetofinalapril.database.UsuarioBancoMigrations.MIGR
 
 import android.content.Context;
 
-import androidx.room.Database;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
+import androidx.room.*;
+
 
 import com.example.projetofinalapril.models.Usuario;
 

@@ -51,6 +51,25 @@ public class TelaInicialActivity extends AppCompatActivity {
                 }
             }, DELAY);
         });
+
+        //SetOnClickListener para ir à tela de login.
+        binding.btnLogin.setOnClickListener(v ->{
+            Intent INTENT = new Intent(TelaInicialActivity.this, LoginUsuarioActivity.class);
+
+
+            //Handler para criar um delay
+            Handler HANDLER = new Handler(Looper.getMainLooper());
+            long DELAY = 100;
+
+            HANDLER.postDelayed(new Runnable(){
+                public void run(){
+                    startActivity(INTENT);
+                    finish();
+                }
+            }, DELAY);
+        });
+
+
         //Fecha o programa.
         binding.btnSair.setOnClickListener(v ->{
 

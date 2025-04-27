@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".database.AppSession"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetoFinalMarch"
         tools:targetApi="31">
+        <activity
+            android:name=".LoginUsuarioActivity"
+            android:exported="false" />
         <activity
             android:name=".TelaInicialActivity"
             android:exported="true">
