@@ -37,8 +37,13 @@ android {
 dependencies {
 
     //implementação do room
-
     val room_version = "2.7.0"
+
+
+    //implementação do supabase
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
 
     implementation(libs.androidx.room.runtime)
     //processador de código
