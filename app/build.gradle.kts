@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -36,13 +37,15 @@ android {
 
 dependencies {
 
+    implementation(libs.firebase.common)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
     //implementação do room
     val room_version = "2.7.0"
 
 
-    //implementação do supabase
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    //implementação do firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.15.0"))
 
 
     implementation(libs.androidx.room.runtime)

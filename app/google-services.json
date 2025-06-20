@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "320924149985",
+    "firebase_url": "https://tccinclusao-498a0-default-rtdb.firebaseio.com",
+    "project_id": "tccinclusao-498a0",
+    "storage_bucket": "tccinclusao-498a0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320924149985:android:543324ff47e702ea4dafa0",
+        "android_client_info": {
+          "package_name": "com.example.projetofinalapril"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_lMtm4Bu7USvqKT0kPoZYDvgQOo9fTsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

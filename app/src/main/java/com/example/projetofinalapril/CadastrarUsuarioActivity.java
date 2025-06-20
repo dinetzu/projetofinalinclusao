@@ -1,24 +1,18 @@
 package com.example.projetofinalapril;
 
-import com.example.projetofinalapril.database.AppDatabase;
-import com.example.projetofinalapril.database.UsuarioDAO;
-import com.example.projetofinalapril.models.Usuario;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import com.example.projetofinalapril.databinding.ActivityCadastrarUsuarioBinding;
-
-import java.util.List;
-
+import com.example.projetofinalapril.firebase.FirebaseManager;
 
 public class CadastrarUsuarioActivity extends AppCompatActivity {
     private ActivityCadastrarUsuarioBinding binding;
+    private FirebaseManager firebaseManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,78 +22,100 @@ public class CadastrarUsuarioActivity extends AppCompatActivity {
         binding = ActivityCadastrarUsuarioBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Isto define o clique do botão usando View Binding
+        // Inicializa Firebase
+        firebaseManager = FirebaseManager.getInstance();
+        firebaseManager.initializeFirebase(this);
+
+        // Define o clique do botão usando View Binding
         binding.btnCadastrar.setOnClickListener(v -> {
-            //"Worker thread" criada para não sobrecarregar a ui na consulta/criação do banco de dados
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    // Thread para a validação dos dados
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (binding.editNome.getText().toString().isEmpty() ||
-                                    binding.editEmail.getText().toString().isEmpty() ||
-                                    binding.editSenha.getText().toString().isEmpty()) {
-                                Toast.makeText(CadastrarUsuarioActivity.this, "Não aceitamos campos vazios!",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-
-                            if (binding.editSenha.getText().toString().length() < 8) {
-                                Toast.makeText(CadastrarUsuarioActivity.this, "Senha deve ter no mínimo 8 caracteres",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                    });
-                    // Thread para a criação do Usuário
-                    new Thread(() -> {
-                        try {
-                            // Criando objeto usuário
-                            Usuario usuario = new Usuario(
-                                    binding.editNome.getText().toString().trim(),
-                                    binding.editEmail.getText().toString().trim(),
-                                    binding.editSenha.getText().toString().trim()
-                            );
-
-                            // Chamando a instância do banco AppDatabase
-                            AppDatabase db = AppDatabase.getInstance(getApplicationContext());
-                            UsuarioDAO dao_usuario = db.usuarioDAO();
-
-                            // Inserindo usuário
-                            dao_usuario.inserirInfo(usuario);
-
-                            // Mostra que deu certo
-                            runOnUiThread(() -> new AlertDialog.Builder(CadastrarUsuarioActivity.this)
-                                    .setMessage("Salvo com sucesso!")
-                                    .show());
-
-                        } catch (IllegalArgumentException e) {
-                            // Mostra o erro da senha que não obedece aos padrões do REGEX definido na classe usuário
-                            runOnUiThread(() -> Toast.makeText(CadastrarUsuarioActivity.this,
-                                    "Erro: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-                        } catch (Exception e) {
-                            // Mostra erros relacionados ao salvamento de dados no BD do Room
-                            runOnUiThread(() -> Toast.makeText(CadastrarUsuarioActivity.this,
-                                    "Erro ao salvar: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-                        }
-                    }).start();
-                }
-            }).start();
-
-
-
-
+            cadastrarUsuario();
         });
 
-        binding.btnVoltarInicial.setOnClickListener(v ->{
-            //Intent para voltar
+        binding.btnVoltarInicial.setOnClickListener(v -> {
+            // Intent para voltar
             Intent intent = new Intent(CadastrarUsuarioActivity.this, TelaInicialActivity.class);
             startActivity(intent);
             finishAffinity();
         });
+    }
 
+    private void cadastrarUsuario() {
+        String nome = binding.editNome.getText().toString().trim();
+        String email = binding.editEmail.getText().toString().trim();
+        String senha = binding.editSenha.getText().toString().trim();
 
+        // Validações básicas
+        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
+            Toast.makeText(this, "Não aceitamos campos vazios!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
+        if (senha.length() < 8) {
+            Toast.makeText(this, "Senha deve ter no mínimo 8 caracteres", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Validação de regex para senha forte
+        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$";
+        if (!senha.matches(passwordRegex)) {
+            Toast.makeText(this, "Senha deve conter ao menos: 1 letra minúscula, 1 maiúscula e 1 número",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // Desabilita o botão para evitar cliques múltiplos
+        binding.btnCadastrar.setEnabled(false);
+
+        // Mostra loading
+        Toast.makeText(this, "Cadastrando usuário...", Toast.LENGTH_SHORT).show();
+
+        // Cadastra no Firebase
+        firebaseManager.cadastrarUsuario(nome, email, senha, new FirebaseManager.OnCompleteListener<String>() {
+            @Override
+            public void onSuccess(String result) {
+                runOnUiThread(() -> {
+                    binding.btnCadastrar.setEnabled(true);
+                    new AlertDialog.Builder(CadastrarUsuarioActivity.this)
+                            .setTitle("Sucesso!")
+                            .setMessage(result)
+                            .setPositiveButton("OK", (dialog, which) -> {
+                                // Limpa os campos
+                                binding.editNome.setText("");
+                                binding.editEmail.setText("");
+                                binding.editSenha.setText("");
+
+                                // Volta para tela inicial
+                                Intent intent = new Intent(CadastrarUsuarioActivity.this, TelaInicialActivity.class);
+                                startActivity(intent);
+                                finish();
+                            })
+                            .show();
+                });
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                runOnUiThread(() -> {
+                    binding.btnCadastrar.setEnabled(true);
+                    String errorMessage = "Erro ao cadastrar: ";
+
+                    if (e.getMessage() != null) {
+                        if (e.getMessage().contains("email address is already in use")) {
+                            errorMessage += "Este email já está em uso!";
+                        } else if (e.getMessage().contains("email address is badly formatted")) {
+                            errorMessage += "Formato de email inválido!";
+                        } else if (e.getMessage().contains("network error")) {
+                            errorMessage += "Erro de conexão. Verifique sua internet.";
+                        } else {
+                            errorMessage += e.getMessage();
+                        }
+                    } else {
+                        errorMessage += "Erro desconhecido";
+                    }
+
+                    Toast.makeText(CadastrarUsuarioActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                });
+            }
+        });
     }
 }
